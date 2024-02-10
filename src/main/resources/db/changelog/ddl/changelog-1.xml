@@ -26,4 +26,75 @@
             <column name="email" type="varchar(255)"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="LIB-2" author="milenajovanovic786@gmail.com">
+
+        <createTable tableName="books">
+            <column name="id" type="BIGINT UNSIGNED">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(128)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="genre" type="varchar(255)">
+                <constraints unique="false"/>
+            </column>
+            <column name="year" type="varchar(128)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="author">
+            <column name="id" type="BIGINT UNSIGNED">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(128)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="birth_year" type="DATE">
+                <constraints unique="false" nullable="false"/>
+            </column>
+            <column name="country" type="varchar(128)">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="authors_books">
+            <column name="book_id" type="BIGINT UNSIGNED">
+                <constraints nullable="false" />
+            </column>
+            <column name="author_id" type="BIGINT UNSIGNED">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_book_id"
+                                    baseTableName="authors_books" baseColumnNames="book_id"
+                                    referencedTableName="books" referencedColumnNames="id" />
+        <addForeignKeyConstraint constraintName="fk_author_id"
+                                    baseTableName="authors_books" baseColumnNames="author_id"
+                                    referencedTableName="author" referencedColumnNames="id" />
+
+    </changeSet>
+
+    <changeSet id="LIB-3" author="milenajovanovic786@gmail.com">
+        <addColumn schemaName= "db"
+                   tableName="books">
+            <column name="user_id" type="BIGINT UNSIGNED">
+                <constraints nullable="false" foreignKeyName="fk_user_book" references="user(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+<!--    <changeSet id="LIB-3" author="milenajovanovic786@gmail.com">-->
+<!--        <addPrimaryKey columnNames="book_id,author_id"-->
+<!--                       constraintName="pk_authors_books"-->
+<!--                       tableName="authors_books"-->
+<!--                       validate="true"/>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="LIB-4" author="milenajovanovic786@gmail.com">-->
+<!--        <rollback changeSetId="LIB-3" changeSetAuthor="milenajovanovic786@gmail.com"/>-->
+<!--    </changeSet>-->
+
 </databaseChangeLog>
