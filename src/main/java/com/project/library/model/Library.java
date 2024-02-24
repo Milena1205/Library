@@ -23,16 +23,6 @@ public class Library {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "type")
-    @Enumerated(value = EnumType.STRING)
-    private Library type;
-
-    @Column(name = "country")
-    private String country;
-
-    @Column(name = "region")
-    private String region;
-
     @Column(name = "city")
     private String city;
 
