@@ -6,11 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 
-public class UserModel implements Serializable, UserDetails {
-
-
-
-
+public class User implements Serializable, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -46,4 +42,6 @@ public class UserModel implements Serializable, UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
 }
