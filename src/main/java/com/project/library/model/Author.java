@@ -1,29 +1,28 @@
 package com.project.library.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
-@Table(name = "user")
-public class User implements Serializable, UserDetails {
+@Table(name = "author")
+public class Author implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Email
-    @Column(name = "email", unique = true)
-    private String email;
-
-    @Column(name = "full_name")
+    @Column(name = "full_name", unique = true)
     private String fullName;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "birth_year")
+    private Date birthYear;
 
 
 
@@ -62,6 +61,4 @@ public class User implements Serializable, UserDetails {
     public boolean isEnabled() {
         return false;
     }
-
-
 }
