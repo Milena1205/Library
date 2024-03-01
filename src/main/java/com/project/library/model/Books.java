@@ -1,48 +1,36 @@
 package com.project.library.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
-import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@Table(name = "user")
-public class User implements Serializable, UserDetails {
-
+@Table (name = "books")
+public class Books implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Email
-    @Column(name = "email", nullable = false, unique = true)
-    public String email;
+    @Column(name = "user_id")
+    private String userId;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "genre", nullable = false)
+    private String genre;
 
-    public User(Long id, String email, String fullName, String password) {
-        this.id = id;
-        this.email = email;
-        this.fullName = fullName;
-        this.password = password;
-    }
+    @Column(name = "year")
+    private Date year;
+
+
+
 
     @Override
-    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
@@ -54,32 +42,26 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public String getUsername() {
-
-        return this.email;
+        return null;
     }
 
     @Override
-    @JsonIgnore
     public boolean isAccountNonExpired() {
         return false;
     }
 
     @Override
-    @JsonIgnore
     public boolean isAccountNonLocked() {
         return false;
     }
 
     @Override
-    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
     @Override
-    @JsonIgnore
     public boolean isEnabled() {
         return false;
     }
-
-    }
+}

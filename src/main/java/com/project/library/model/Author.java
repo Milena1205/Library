@@ -27,6 +27,7 @@ public class Author implements Serializable, UserDetails {
 
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
