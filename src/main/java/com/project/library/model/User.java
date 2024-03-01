@@ -10,13 +10,14 @@ import java.util.Collection;
 
 @Table(name = "user")
 public class User implements Serializable, UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Email
-    @Column(name = "email", unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "full_name")
@@ -26,6 +27,13 @@ public class User implements Serializable, UserDetails {
     private String password;
 
 
+
+    public User(Long id, String email, String fullName, String password) {
+        this.id = id;
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+    }
 
 
     @Override
