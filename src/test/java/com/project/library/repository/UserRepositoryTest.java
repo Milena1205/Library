@@ -13,19 +13,18 @@ public class UserRepositoryTest extends IntegrationTestPrototype {
     UserRepository userRepository;
 
     @Test
-    public void TestSaveUser() {
-        String email = null;
+    public void testSaveUser() {
         User user = new User();
-        email = "milenajovanovic786@gmail.com";
+        String email  = "milenajovanovic786@gmail.com";
+        String fullName = "Milena Jovanovic";
         user.setEmail(email);
-        user.setFullName("Milena Jovanovic");
+        user.setFullName(fullName);
         user.setPassword("Milena123@");
 
         userRepository.save(user);
 
         User savedUser = userRepository.findUserByEmail(email).orElseThrow();
         assertEquals(savedUser.getEmail(), email);
-
+        assertEquals(savedUser.getFullName(), fullName);
     }
-
 }
