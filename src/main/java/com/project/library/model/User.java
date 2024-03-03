@@ -3,19 +3,12 @@ package com.project.library.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
-import java.util.Base64;
 import java.util.Collection;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "user")
 public class User implements Serializable, UserDetails {
 
@@ -26,7 +19,7 @@ public class User implements Serializable, UserDetails {
 
     @Email
     @Column(name = "email", nullable = false, unique = true)
-    public String email;
+    private String email;
 
     @Column(name = "full_name")
     private String fullName;
@@ -34,10 +27,41 @@ public class User implements Serializable, UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    public User() {
+    }
+
     public User(Long id, String email, String fullName, String password) {
         this.id = id;
         this.email = email;
         this.fullName = fullName;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 

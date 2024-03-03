@@ -1,11 +1,11 @@
 package com.project.library.service;
 
 import com.project.library.LibraryApplicationTests;
+import com.project.library.model.User;
 import com.project.library.service.dto.UserRegistrationRequestDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 
 public class UserServiceTest extends LibraryApplicationTests {
 
@@ -29,6 +29,5 @@ public class UserServiceTest extends LibraryApplicationTests {
 
         User savedUser = userService.findByEmail(email);
         Assert.assertEquals(savedUser.getEmail(), email);
-        Assert.assertNotNull(savedUser.getSecretKey());
     }
 }

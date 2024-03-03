@@ -1,10 +1,9 @@
 package com.project.library.repository;
 
-
 import com.project.library.LibraryApplicationTests;
+import com.project.library.model.User;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 
 public class UserRepositoryTest extends LibraryApplicationTests {
 
