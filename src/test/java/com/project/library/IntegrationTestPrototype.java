@@ -20,13 +20,14 @@ import org.testcontainers.utility.DockerImageName;
 public abstract class IntegrationTestPrototype {
 
 	@Container
-	static MySQLContainer mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:8.0-debian"));
+	static MySQLContainer mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:8.0-debian")).withDatabaseName("db");
 
 	@DynamicPropertySource
 	static void kafkaProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.datasource.url", () -> mySQLContainer.getJdbcUrl());
+		//registry.add("spring.datasource.url", () -> "jdbc:mysql://localhost:3307/db");
 		registry.add("spring.datasource.driverClassName", () -> mySQLContainer.getDriverClassName());
-		registry.add("spring.datasource.username", () -> mySQLContainer.getUsername());
+		registry.add("spring.datasource.username", () -> "root");
 		registry.add("spring.datasource.password", () -> mySQLContainer.getPassword());
 		registry.add("spring.flyway.enabled", () -> "true");
 	}

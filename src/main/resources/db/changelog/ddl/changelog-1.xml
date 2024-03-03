@@ -7,8 +7,8 @@
 
     <changeSet id="LIB-1" author="milenajovanovic786@gmail.com">
         <createTable tableName="user">
-            <column name="id" type="BIGINT UNSIGNED">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="BIGINT UNSIGNED" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="email" type="varchar(128)">
                 <constraints unique="true" nullable="false"/>
@@ -30,7 +30,7 @@
     <changeSet id="LIB-2" author="milenajovanovic786@gmail.com">
 
         <createTable tableName="books">
-            <column name="id" type="BIGINT UNSIGNED">
+            <column name="id" type="BIGINT UNSIGNED" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(128)">
@@ -45,7 +45,7 @@
         </createTable>
 
         <createTable tableName="author">
-            <column name="id" type="BIGINT UNSIGNED">
+            <column name="id" type="BIGINT UNSIGNED" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="full_name" type="varchar(128)">
