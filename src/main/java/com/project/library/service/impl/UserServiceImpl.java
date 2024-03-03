@@ -1,10 +1,10 @@
 package com.project.library.service.impl;
 
+import com.project.library.model.User;
 import com.project.library.repository.UserRepository;
 import com.project.library.service.UserService;
 import com.project.library.service.dto.UserRegistrationRequestDTO;
 import com.project.library.service.dto.UserRegistrationResponseDTO;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 @Service
