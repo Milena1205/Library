@@ -1,15 +1,18 @@
 package com.project.library.repository;
 
-import com.project.library.LibraryApplicationTests;
+import com.project.library.IntegrationTestPrototype;
 import com.project.library.model.User;
-import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserRepositoryTest extends LibraryApplicationTests {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class UserRepositoryTest extends IntegrationTestPrototype {
 
     @Autowired
     UserRepository userRepository;
 
+    @Test
     public void TestSaveUser() {
         String email = null;
         User user = new User();
@@ -21,7 +24,7 @@ public class UserRepositoryTest extends LibraryApplicationTests {
         userRepository.save(user);
 
         User savedUser = userRepository.findUserByEmail(email).orElseThrow();
-        Assert.assertEquals(savedUser.getEmail(), email);
+        assertEquals(savedUser.getEmail(), email);
 
     }
 
